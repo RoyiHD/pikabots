@@ -9,19 +9,19 @@ let currentAnswer;
 let score = 0;
 
 function generateQuestion() {
-//const num1 = Math.floor(Math.random() * 10) + 1;
-//const num2 = Math.floor(Math.random() * 10) + 1;
-//const operation = Math.random() < 0.5 ? '+' : '-';
+    //const num1 = Math.floor(Math.random() * 10) + 1;
+    //const num2 = Math.floor(Math.random() * 10) + 1;
+    //const operation = Math.random() < 0.5 ? '+' : '-';
 
-//if (operation === '+') {
-// currentAnswer = num1 + num2;
-//} else {
-// currentAnswer = num1 - num2;
-//}
+    //if (operation === '+') {
+    //currentAnswer = num1 + num2;
+    //} else {
+    //currentAnswer = num1 - num2;
+    //}
 
-//questionElement.textContent = `${num1} ${operation} ${num2} = ?`;
+    //questionElement.textContent = `${num1} ${operation} ${num2} = ?`;
 
-const textArray = [
+    const textArray = [
 "If current trends continue, by which year, the world's oceans will contain more plastic than fish?",
 "How much more plastic(in billion tons) was produced in 2019 than 2015?",
 "What percentage of plastic waste is recycled as of 2019?",
@@ -83,9 +83,15 @@ iframes.forEach(iframe => iframe.remove());
 if (score < 9) {
 generateQuestion();
 } else {
-questionElement.textContent = "Refresh to play again.\n\n Or if you would like, help Team Pikabotz grow this petition."
-createIframe('images/petition.png');
-resultElement.textContent = 'Thank you for your support!';
+    questionElement.textContent = "Refresh to play again.\n\n Or if you would like, help Team Pikabotz grow this petition."
+    createIframe('images/petition.png');
+    resultElement.textContent = 'Thank you for your support!';
+    answerElement.remove();
+    submitButton.innerHTML = 'Sign Petition';
+    submitButton.removeEventListener('click', checkAnswer);
+    submitButton.addEventListener('click', () => {
+        window.location.href = "https://chng.it/jMxf2NwrKf";
+    });
 }
 }
 
@@ -102,7 +108,7 @@ iframeElement.appendChild(iframe);
 submitButton.addEventListener('click', checkAnswer);
 answerElement.addEventListener('keypress', function(event) {
 if (event.key === 'Enter') {
-checkAnswer();
+    checkAnswer();
 }
 });
 
